@@ -1,0 +1,16 @@
+# compiled Java files
+
+*.class
+
+# external libraries
+
+*.jar
+
+# OS files
+
+.DS_Store
+
+# IDE folders (valgfritt)
+
+.idea/
+.vscode/
