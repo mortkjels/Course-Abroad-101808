@@ -46,7 +46,7 @@ public class Triangle {
 		} else {
 			System.out.println("Cannot form a triangle");
 			return TriangleType.INVALID;
-		}
+		} 
 	}
 	
 

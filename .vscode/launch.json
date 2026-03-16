@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Triangle",
+            "request": "launch",
+            "mainClass": "Triangle",
+            "projectName": "Course-Abroad-101808_19f2c345"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "FirstDelivery.Main",

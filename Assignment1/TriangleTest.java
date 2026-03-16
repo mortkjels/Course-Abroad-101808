@@ -1,23 +1,26 @@
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 public class TriangleTest {
     @Test
-    public void testEquilateral() {
-        Triangle equiliteral = new Triangle(2, 2, 2);
-        assertEquals(TriangleType.Equilateral, equiliteral.CheckType());
+    public void testCheckTypeEq() {
+        Triangle t1 = new Triangle(2, 2, 2);
+        assertEquals(t1.CheckType(), TriangleType.Equilateral);
     }
-
     @Test
-    public void testIsocoles() {
-        Triangle isosceles = new Triangle(4, 4, 2);
-        assertEquals(TriangleType.Isosceles, isosceles.CheckType());
-    }   
-
+    public void testCheckTypeIso() {
+        Triangle t2 = new Triangle(2, 2, 3);
+        assertEquals(t2.CheckType(), TriangleType.Isosceles);
+    }
     @Test
-    public void testScalene() {
-        Triangle scalene = new Triangle(3, 4, 5);
-        assertEquals(TriangleType.Scalene, scalene.CheckType());
-    }   
-
+    public void testCheckTypeSca() {
+        Triangle t3 = new Triangle(2, 3, 4);
+        assertEquals(t3.CheckType(), TriangleType.Scalene);
+    }
+    @Test
+    public void testCheckTypeInvalid() {
+        Triangle t4 = new Triangle(2, 3, 10);
+        assertEquals(t4.CheckType(), TriangleType.INVALID);
+    }
 }
