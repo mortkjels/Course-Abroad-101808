@@ -48,42 +48,5 @@ public class Triangle {
 			return TriangleType.INVALID;
 		} 
 	}
-	
-
-public static void main(String[] args) {
-
-    // Lager noen trekant-objekter
-    Triangle t1 = new Triangle(3, 4, 5);
-    Triangle t2 = new Triangle(5, 5, 5);
-    Triangle t3 = new Triangle(2, 2, 3);
-    Triangle t4 = new Triangle(1, 2, 10);
-
-    // Test av første trekant
-    System.out.println("Triangle t1:");
-    System.out.println("Type: " + t1.CheckType());
-    System.out.println("Valid: " + t1.isValid());
-    System.out.println("Right triangle: " + t1.isRight());
-    System.out.println();
-
-    // Test av andre trekant
-    System.out.println("Triangle t2:");
-    System.out.println("Type: " + t2.CheckType());
-    System.out.println("Valid: " + t2.isValid());
-    System.out.println("Right triangle: " + t2.isRight());
-    System.out.println();
-
-    // Test av tredje trekant
-    System.out.println("Triangle t3:");
-    System.out.println("Type: " + t3.CheckType());
-    System.out.println("Valid: " + t3.isValid());
-    System.out.println("Right triangle: " + t3.isRight());
-    System.out.println();
-
-    // Test av fjerde trekant
-    System.out.println("Triangle t4:");
-    System.out.println("Type: " + t4.CheckType());
-    System.out.println("Valid: " + t4.isValid());
-    System.out.println("Right triangle: " + t4.isRight());
-}
 
 }
