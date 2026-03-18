@@ -1,7 +1,5 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -55,7 +53,14 @@ public class TriangleTest {
 
     @Test
     public void testIsRight() {
-        Triangle t6 = new Triangle(2, 3, 5);
+        Triangle t6 = new Triangle(5, 3, 4);
+        assertEquals(t6.isRight(), true);
+        Triangle t10 = new Triangle(3, 5, 4);
+        assertEquals(t10.isRight(), true);
+        Triangle t11 = new Triangle(3, 4, 5);
+        assertEquals(t11.isRight(), true);
+        Triangle t9 = new Triangle(5, 4, 4);
+        assertEquals(t9.isRight(), false);
         
     }
 
