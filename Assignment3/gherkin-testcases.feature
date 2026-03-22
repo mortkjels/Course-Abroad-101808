@@ -1,14 +1,37 @@
-Feature: SearchOwner
-    I want to search for an owner by their first name
+Feature: PetClinic Testing
+    Systematic testing of owner, pet, and visit functionality
+
+
+    # =========================
+    # FIND OWNERS (SEARCH)
+    # =========================
 
     Scenario: Search for an owner by their first name
         Given I am on the "Find Owners" page
         When I enter "John" into the first name field
         And I click the "Find Owner" button
         Then I should see a list of owners with the first name "John"
-
     # The scenario above assumes that we can search by first name
     # The app is only designed to search by last name, so this will fail.
+
+    Scenario: Search for owner with last name
+        Given I am on the "Find Owners" page
+        When I enter "Coleman" into the last name field
+        And I click the "Find Owner" button
+        Then I should see a list of owners with the last name "Coleman"
+        # The scenario searched for an owner by their last name and got the list
+
+    Scenario: Search for owner with invalid last name according to the DB
+        Given I am on the "Find Owners" page
+        When I enter "Smith" into the last name field
+        And I click the "Find Owner" button
+        Then I should see a message that no owners found with the last name "Smith"
+        # No owner exists with this name
+
+
+    # =========================
+    # OWNER CREATION
+    # =========================
 
     Scenario: Add owner
         Given I am on the "Find Owners" page
@@ -16,28 +39,60 @@ Feature: SearchOwner
         And I fill in the owner details with first name "John", last name "Doe", 
             address "123 Main St", city "New York", and telephone "1234567890"
         And I click the "Add Owner" button
-        Then I should see a confirmation message that the owner has been added.
-    # The scenario added the owner and got the confirmation
-    
-    Scenario: "Add Pet to the owner"
+        Then I should see a confirmation message that the owner has been added
+        # Owner successfully added
+
+
+    # =========================
+    # OWNER EDITING
+    # =========================
+
+    Scenario: Change Owner's information
+        Given I choose an owner from the catalog, let's say "Jean Coleman"
+        When I click the "Edit Owner" button
+        And change the owner's first name to "Jolly" and City to "Los Angeles"
+        And click the "Update Owner" button
+        Then I get a update confirmation message that the owner's information has been updated
+        # System allows editing existing catalog owner
+
+    Scenario: Change an owners information with invalid telephone number
+        Given I choose an owner from the catalog, let's say "Jolly Coleman"
+        When I click the "Edit Owner" button
+        And change the owner's telephone number to "123456890"
+        And click the "Update Owner" button
+        Then I get an update confirmation message that it's changed
+        # Invalid number accepted (potential issue)
+
+    Scenario: Use letters in phone numbers
+        Given I choose an owner from the catalog, let's say "Jolly Coleman"
+        When I click the "Edit Owner" button
+        And change the owner's telephone number to "12345678ab"
+        And click the "Update Owner" button
+        Then I get an invalid message that it's not a valid telephone number
+        # Validation works for letters
+
+
+    # =========================
+    # PET MANAGEMENT
+    # =========================
+
+    Scenario: Add Pet to the owner
         Given I added the owner "John Doe"
         When I click the "Add New Pet" button
         And I fill in the pet name "Buddy", birth date "2026-01-01" and type "Dog"
         And I click the "Add Pet" button
         Then I should see a confirmation message that the pet has been added to the owner "John Doe"
+        # Pet successfully added
 
-        # The scenario added a pet to the owner and got the confirmation
-
-    Scenario: "Add Pet to the owner with invalid birth date"
+    Scenario: Add Pet to the owner with invalid future birth date
         Given I added the owner "John Doe"
         When I click the "Add New Pet" button
         And I fill in the pet name "Fluffy", birth date "2027-01-01" and type "Dog"
         And I click the "Add Pet" button
         Then I should see a invalid message that the pet has an invalid birth date
+        # Future date rejected
 
-        #The Scenario did not add a pet to the owner since the birth date is in the future
-    
-    Scenario: "Add Pet to the owner with invalid birth date"
+    Scenario: Add Pet to the owner with unrealistic past birth date and add visit
         Given I added the owner "John Doe"
         When I click the "Add New Pet" button
         And I fill in the pet name "Fluffy", birth date "1090-01-01" and type "Dog"
@@ -46,7 +101,10 @@ Feature: SearchOwner
         And I fill in the visit details with date "2023-01-01" and description "Regular Checkup"
         And I click the "Add Visit" button
         Then I got the confirmation message that the visit has been added to "Fluffy"
-        # The scenario added the pet and visit, should not be able since the visit is in 2024 and the birth date is in 1090
-        # The Scenario did add a pet to the owner eventhough the birth date is in the past with an unrealistic date
+        # System allows unrealistic dates (potential issue)
 
-    Scenario: Scenario name
+
+    # =========================
+    # VISITS
+    # =========================
+    # (Currently combined with pet scenario above)
